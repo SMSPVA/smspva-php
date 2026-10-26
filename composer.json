@@ -1,0 +1,52 @@
+{
+  "name": "smspva/sdk",
+  "description": "Official PHP SDK for SMSPVA SMS activation, phone number rental and private email rental APIs",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "SMSPVA\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "@php tests/test.php"
+  },
+  "archive": {
+    "exclude": [
+      "/tests",
+      "/scripts",
+      "/.checks",
+      "/vendor",
+      "/.github",
+      "/.gitignore",
+      "/CONTRIBUTING.md"
+    ]
+  },
+  "homepage": "https://smspva.com/",
+  "keywords": [
+    "smspva",
+    "sms",
+    "verification",
+    "activation",
+    "phone-number",
+    "rental",
+    "email",
+    "sdk"
+  ],
+  "support": {
+    "docs": "https://docs.smspva.com/",
+    "source": "https://github.com/SMSPVA/smspva-php",
+    "issues": "https://github.com/SMSPVA/smspva-php/issues"
+  },
+  "authors": [
+    {
+      "name": "SMSPVA",
+      "homepage": "https://smspva.com/"
+    }
+  ]
+}

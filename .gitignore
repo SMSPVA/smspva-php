@@ -1,0 +1,6 @@
+.checks/
+vendor/
+.env
+.env.*
+*.zip
+composer.lock
