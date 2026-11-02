@@ -84,6 +84,28 @@ final class Activation
     }
 
     /**
+     * GET /activation/countnumberscompact
+     * @param array{} $params
+     * @param array{timeout?:float|int,useApiKey?:bool} $options
+     * @return array<string,mixed> Original API response; see resources/contracts.json.
+     */
+    public function getAllNumberCountsCompact(array $params = [], array $options = []): array
+    {
+        return $this->transport->request('activation.getAllNumberCountsCompact', $params, $options);
+    }
+
+    /**
+     * GET /activation/countnumberscompact/{country}
+     * @param array{country:string} $params
+     * @param array{timeout?:float|int,useApiKey?:bool} $options
+     * @return array<string,mixed> Original API response; see resources/contracts.json.
+     */
+    public function getCountryNumberCountsCompact(array $params = [], array $options = []): array
+    {
+        return $this->transport->request('activation.getCountryNumberCountsCompact', $params, $options);
+    }
+
+    /**
      * GET /activation/serviceprice/{country}/{service}
      * @param array{country:string,service:string,voice?:int|null} $params
      * @param array{timeout?:float|int,useApiKey?:bool} $options

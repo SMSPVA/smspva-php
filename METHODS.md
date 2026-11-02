@@ -13,6 +13,8 @@ Each method takes a parameter array and an optional options array. PHPDoc in `sr
 | `$client->activation->getMessageTypeSettings` | `GET /activation/countryservicesettings` | None |
 | `$client->activation->getAllNumberCounts` | `GET /activation/countnumbers` | None |
 | `$client->activation->getCountryNumberCounts` | `GET /activation/countnumbers/{country}` | `country` (required) |
+| `$client->activation->getAllNumberCountsCompact` | `GET /activation/countnumberscompact` | None |
+| `$client->activation->getCountryNumberCountsCompact` | `GET /activation/countnumberscompact/{country}` | `country` (required) |
 | `$client->activation->getServicePrice` | `GET /activation/serviceprice/{country}/{service}` | `country` (required), `service` (required), `voice` |
 | `$client->activation->getCountryOperatorPrices` | `GET /activation/serviceprice/{country}` | `country` (required), `voice` |
 | `$client->activation->getServicePrices` | `GET /activation/serviceprices/{service}` | `service` (required), `voice` |
