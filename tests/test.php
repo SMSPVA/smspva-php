@@ -42,8 +42,8 @@ foreach ($cases as $case) {
     check($actualQuery == $expectedQuery, 'Wrong query/auth: ' . $case['key']);
     check(($request['headers']['apikey'] ?? null) === ($op['family'] === 'activation' && $op['auth'] !== 'none' ? $secret : null), 'Wrong auth header');
 }
-check(count($calls) === 56, 'Expected 56 requests');
-echo "PASS: 56 methods, verbs, paths, query names, auth and original results\n";
+check(count($calls) === 58, 'Expected 58 requests');
+echo "PASS: 58 methods, verbs, paths, query names, auth and original results\n";
 
 $body = ['status' => 1, 'data' => []];
 $client->email->getData(['pcode' => '']); parse_str(parse_url(end($calls)['url'], PHP_URL_QUERY), $query); check(!isset($query['pcode']) && !isset($query['apikey']), 'Empty public provider/auth sent');

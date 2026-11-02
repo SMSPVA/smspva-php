@@ -14,7 +14,7 @@ for (const family of ['activation','rental','email']) {
   if (family==='activation') source += `\n    /** Saved Unix expiry in seconds. Never creates or cancels an order. */\n    public function waitForSms(int $orderid, float $expiresAt, float $interval = 5.0, ?string $partnerkey = null): array\n    {\n        return $this->transport->waitForSms($orderid, $expiresAt, $interval, $partnerkey);\n    }\n`;
   await writeFile(new URL(`src/${name}.php`,root),source+'}\n');
 }
-console.log('Generated 56 PHP methods and bundled contracts.');
+console.log('Generated 58 PHP methods and bundled contracts.');
 let index='# PHP method index\n\nEach method takes a parameter array and an optional options array. PHPDoc in `src/` contains input shapes; `resources/contracts.json` preserves wire schemas.\n\n';
 for(const family of ['activation','rental','email']) {
   index+=`## ${family}\n\n| Method | HTTP | Parameters |\n| --- | --- | --- |\n`;
