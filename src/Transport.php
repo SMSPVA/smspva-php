@@ -72,7 +72,7 @@ final class Transport
             if ((isset($schema['enum']) && !in_array($value, $schema['enum'], true)) || (is_numeric($value) && (is_int($value) || is_float($value)) && ((isset($schema['minimum']) && $value < $schema['minimum']) || (isset($schema['maximum']) && $value > $schema['maximum'])))) throw new ValidationError('Invalid value for parameter: ' . $name);
             if (is_string($value)) {
                 $length = preg_match_all('/./us', $value);
-                if ($length === false || (isset($schema['minLength']) && $length < $schema['minLength']) || (isset($schema['maxLength']) && $length > $schema['maxLength']) || (isset($schema['pattern']) && preg_match('~' . str_replace('~', '\\~', $schema['pattern']) . '~u', $value) !== 1)) throw new ValidationError('Invalid value for parameter: ' . $name);
+                if ($length === false || (isset($schema['minLength']) && $length < $schema['minLength']) || (isset($schema['maxLength']) && $length > $schema['maxLength']) || (isset($schema['pattern']) && preg_match('~' . str_replace('~', '\\~', $schema['pattern']) . '~uD', $value) !== 1)) throw new ValidationError('Invalid value for parameter: ' . $name);
             }
             $text = is_bool($value) ? ($value ? 'true' : 'false') : (string)$value;
             if ($parameter['in'] === 'path') {
@@ -106,7 +106,7 @@ final class Transport
         $code = is_string($error['type'] ?? null) ? $error['type'] : (is_int($body['errorid'] ?? null) ? $body['errorid'] : (is_int($status) ? $status : $httpStatus));
         if ($httpStatus < 200 || $httpStatus >= 300) throw new ApiError($op['family'], $operation, $httpStatus, $code, $body);
         if (!is_int($status)) throw new ProtocolError($op['family'], $operation, $httpStatus);
-        if ($op['pending'] && $httpStatus === 202 && $status === 202 && ($error['type'] ?? null) === 'SMS_NOT_YET_RECEIVED') return $body;
+        if ($op['pending'] && $httpStatus === 202 && $status === 202 && ($error['type'] ?? null) === ($op['pendingType'] ?? 'SMS_NOT_YET_RECEIVED')) return $body;
         if ($op['noStock'] && $httpStatus === 200 && $status === 2) return $body;
         $errorValue = $object->error ?? null;
         $hasError = $errorValue !== null && $errorValue !== false && $errorValue !== '' && $errorValue !== 0 && $errorValue !== 0.0;

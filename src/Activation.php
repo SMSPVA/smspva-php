@@ -172,6 +172,39 @@ final class Activation
     }
 
     /**
+     * POST /activation/repeatnumber/{number}/{service}
+     * @param array{number:string,service:string} $params
+     * @param array{timeout?:float|int,useApiKey?:bool} $options
+     * @return array<string,mixed> Original API response; see resources/contracts.json.
+     */
+    public function repeatNumber(array $params = [], array $options = []): array
+    {
+        return $this->transport->request('activation.repeatNumber', $params, $options);
+    }
+
+    /**
+     * GET /activation/statusphone/{orderid}
+     * @param array{orderid:int} $params
+     * @param array{timeout?:float|int,useApiKey?:bool} $options
+     * @return array<string,mixed> Original API response; see resources/contracts.json.
+     */
+    public function getPhoneStatus(array $params = [], array $options = []): array
+    {
+        return $this->transport->request('activation.getPhoneStatus', $params, $options);
+    }
+
+    /**
+     * PUT /activation/startsms/{orderid}
+     * @param array{orderid:int} $params
+     * @param array{timeout?:float|int,useApiKey?:bool} $options
+     * @return array<string,mixed> Original API response; see resources/contracts.json.
+     */
+    public function startSms(array $params = [], array $options = []): array
+    {
+        return $this->transport->request('activation.startSms', $params, $options);
+    }
+
+    /**
      * GET /activation/sms/{orderid}
      * @param array{partnerkey?:string|null,orderid:int} $params
      * @param array{timeout?:float|int,useApiKey?:bool} $options

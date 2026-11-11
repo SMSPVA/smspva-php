@@ -21,6 +21,9 @@ Each method takes a parameter array and an optional options array. PHPDoc in `sr
 | `$client->activation->getAllServicePrices` | `GET /activation/servicesprices` | `voice` |
 | `$client->activation->getNumber` | `GET /activation/number/{country}/{service}` | `country` (required), `service` (required), `voice` |
 | `$client->activation->getNumberByOperator` | `GET /activation/number/{country}/{service}/{operator}` | `country` (required), `service` (required), `operator` (required), `voice` |
+| `$client->activation->repeatNumber` | `POST /activation/repeatnumber/{number}/{service}` | `number` (required), `service` (required) |
+| `$client->activation->getPhoneStatus` | `GET /activation/statusphone/{orderid}` | `orderid` (required) |
+| `$client->activation->startSms` | `PUT /activation/startsms/{orderid}` | `orderid` (required) |
 | `$client->activation->receiveSms` | `GET /activation/sms/{orderid}` | `partnerkey`, `orderid` (required) |
 | `$client->activation->getOrders` | `GET /activation/orders` | None |
 | `$client->activation->getNumberStatus` | `GET /activation/numberstatus/{number}/{service}` | `number` (required), `service` (required) |

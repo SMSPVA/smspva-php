@@ -42,8 +42,8 @@ foreach ($cases as $case) {
     check($actualQuery == $expectedQuery, 'Wrong query/auth: ' . $case['key']);
     check(($request['headers']['apikey'] ?? null) === ($op['family'] === 'activation' && $op['auth'] !== 'none' ? $secret : null), 'Wrong auth header');
 }
-check(count($calls) === 58, 'Expected 58 requests');
-echo "PASS: 58 methods, verbs, paths, query names, auth and original results\n";
+check(count($calls) === 61, 'Expected 61 requests');
+echo "PASS: 61 methods, verbs, paths, query names, auth and original results\n";
 
 $body = ['status' => 1, 'data' => []];
 $client->email->getData(['pcode' => '']); parse_str(parse_url(end($calls)['url'], PHP_URL_QUERY), $query); check(!isset($query['pcode']) && !isset($query['apikey']), 'Empty public provider/auth sent');
@@ -70,6 +70,10 @@ echo "PASS: argument types, required values, enums and credentials validated bef
 
 $status = 202; $body = ['statusCode'=>202,'error'=>['type'=>'SMS_NOT_YET_RECEIVED']];
 $pending = $client->activation->receiveSms(['orderid'=>123]); check(Client::isPending($pending), 'Pending lost');
+$body = ['statusCode'=>202,'error'=>['type'=>'NUMBER_NOT_READY','description'=>'Wait'],'retryAfter'=>17];
+check($client->activation->repeatNumber(['number'=>'01234','service'=>'opt164']) === $body, 'Number pending response changed');
+$body = ['statusCode'=>202,'error'=>['type'=>'PHONE_NOT_READY','description'=>'Wait']];
+check($client->activation->getPhoneStatus(['orderid'=>123]) === $body, 'Phone pending response changed');
 $status = 200; $body = ['status'=>2];
 $noStock = $client->email->createOrder(['scode'=>'example','dtype'=>'week','dcount'=>1]); check(Client::isNoStock($noStock), 'No stock lost');
 expect(ApiError::class, static fn() => $client->email->getProviders());
