@@ -15,4 +15,4 @@ foreach ($cases as $case) {
 $client->email->getProviders(); $client->email->getProviders();
 try { $client->email->getProviders(); throw new RuntimeException('Redirect followed'); } catch (ApiError $error) { if ($error->httpStatus !== 302) throw $error; }
 try { $client->email->getProviders([], ['timeout'=>0.02]); throw new RuntimeException('Timeout missing'); } catch (RequestTimeoutError $error) { if ($error->outcomeUnknown) throw new RuntimeException('Readonly timeout classified as paid'); }
-echo "PHP cURL: 58 wire cases, no cookies, no redirects, real timeout passed\n";
+echo "PHP cURL: 61 wire cases, no cookies, no redirects, real timeout passed\n";
